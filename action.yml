@@ -4,7 +4,8 @@ description: 'GitHub Action to build Ruby versions dynamically'
 
 inputs:
   type:
-    description: 'See https://cache.ruby-lang.org/pub/misc/ci_versions/'
+    # See https://cache.ruby-lang.org/pub/misc/ci_versions/
+    description: '"cruby", "cruby-jruby", "cruby-truffleruby", or "all"'
     required: true
     default: 'cruby'
 
