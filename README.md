@@ -15,6 +15,9 @@ jobs:
     steps:
       - id: versions
         uses: ybiquitous/dynamic-ruby-versions-action@v1
+        # with:
+        #   type: 'cruby' # or 'cruby-jruby', 'cruby-truffleruby', 'all'
+
   test:
     needs: ruby-versions
     runs-on: ubuntu-latest
