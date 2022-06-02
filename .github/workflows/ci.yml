@@ -1,0 +1,24 @@
+name: CI
+
+on: push
+
+jobs:
+  ruby-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.versions.outputs.versions }}
+    steps:
+      - id: versions
+        uses: ./
+    
+  test:
+    name: Test on Ruby ${{ matrix.ruby }}
+    needs: ruby-versions
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ${{ fromJson(needs.ruby-versions.outputs.versions) }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: ruby -v
