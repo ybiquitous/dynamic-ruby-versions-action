@@ -22,6 +22,9 @@ jobs:
         ruby: ${{ fromJson(needs.ruby-versions.outputs.versions) }}
     steps:
       - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
       - run: ruby -v
 
   ruby-versions-all:
@@ -45,4 +48,7 @@ jobs:
         ruby: ${{ fromJson(needs.ruby-versions-all.outputs.versions) }}
     steps:
       - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
       - run: ruby -v
