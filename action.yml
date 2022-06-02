@@ -21,4 +21,4 @@ runs:
       run: |
         versions="$(curl -s 'https://cache.ruby-lang.org/pub/misc/ci_versions/${{ inputs.type }}.json' | jq -c)"
         echo "Fetched Ruby versions: ${versions}"
-        echo "::set-output name=value::${versions}"
+        echo "::set-output name=versions::${versions}"
