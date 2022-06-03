@@ -68,7 +68,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ${{ fromJson(needs.ruby-versions-all.outputs.versions) }}
+        ruby: ${{ fromJson(needs.ruby-versions-add.outputs.versions) }}
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
