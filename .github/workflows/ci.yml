@@ -13,7 +13,6 @@ jobs:
         uses: ./
 
   test:
-    name: Test on Ruby ${{ matrix.ruby }}
     needs: ruby-versions
     runs-on: ubuntu-latest
     strategy:
@@ -39,8 +38,32 @@ jobs:
           type: all
 
   test-all:
-    name: Test on Ruby ${{ matrix.ruby }} (all)
     needs: ruby-versions-all
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ${{ fromJson(needs.ruby-versions-all.outputs.versions) }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - run: ruby -v
+
+  ruby-versions-add:
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.versions.outputs.versions }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: versions
+        uses: ./
+        with:
+          add: '["2.5", "2.6"]'
+
+  test-add:
+    needs: ruby-versions-add
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
