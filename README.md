@@ -1,6 +1,6 @@
 # Dynamic Ruby versions action
 
-GitHub Action to build Ruby versions dynamically.
+GitHub Action to build Ruby versions dynamically. You don’t need to create a PR to add a new Ruby version to CI matrixes.
 
 ## Usage
 
