@@ -9,7 +9,7 @@ inputs:
     required: true
     default: 'cruby'
   add:
-    description: 'Additional versions (must be JSON string)'
+    description: 'Additional versions (must be comma-separated strings with double quotes)'
     required: false
     default: ''
 
