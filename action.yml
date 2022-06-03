@@ -8,6 +8,10 @@ inputs:
     description: '"cruby", "cruby-jruby", "cruby-truffleruby", or "all"'
     required: true
     default: 'cruby'
+  add:
+    description: 'Additional versions (must be comma-separated strings with double quotes)'
+    required: false
+    default: ''
 
 outputs:
   versions:
@@ -20,8 +24,9 @@ runs:
     - id: build-versions
       shell: bash
       run: |
-        versions="$(curl -s "https://cache.ruby-lang.org/pub/misc/ci_versions/${TYPE}.json" | jq -c)"
+        versions="$(curl -s "https://cache.ruby-lang.org/pub/misc/ci_versions/${TYPE}.json" | jq -c ". + [${ADD}]")"
         echo "Fetched Ruby versions: ${versions}"
         echo "::set-output name=versions::${versions}"
       env:
         TYPE: ${{ inputs.type }}
+        ADD: ${{ inputs.add }}
