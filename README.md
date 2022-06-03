@@ -31,3 +31,13 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
       # more steps...
 ```
+
+The case to add outdated versions:
+
+```yaml
+steps:
+  - id: versions
+    uses: ybiquitous/dynamic-ruby-versions-action@v1
+    with:
+      add: '"2.5", "2.6"' # must be comma-separated strings with double quotes
+```
